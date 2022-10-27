@@ -1,0 +1,164 @@
+@import "MyMixins";
+@import "ProductsGrid";
+@import "ProductDetails";
+
+header {
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  font-size: MAX(12px, 1.1111vw);
+  @include pa_ma(0.9375em 1.875em, none);
+  box-shadow: rgba(0, 0, 0, 0.05) 1.95px 1.95px 2.6px;
+  @include flex(center, space-between, row);
+
+  p {
+    color: #0a2748;
+    opacity: 0.7;
+    font-size: 1em;
+  }
+
+  .heIcon {
+    font-size: 1.625em;
+    color: rgb(136, 8, 8);
+  }
+
+  .header__search {
+    @include flex(center, space-between, row);
+    @include width(25em, 2.25em, #fff, none, 1.875em, 0.625em);
+    @include shadow(-5px 9px 20px 0px rgba(23, 45, 89, 0.03));
+    input {
+      @include width(80%, auto, none, none, none, 0.9375em);
+      font-size: 1em;
+    }
+  }
+
+  .header__user {
+    .heIcon {
+      @include pa_ma(none, 0 0.5769em);
+      border: 0.07692em solid rgb(136, 8, 8);
+    }
+  }
+
+  .button {
+    @include width(
+      /*180px*/ 11.25em,
+      2.5em /*40px*/,
+      rgb(136, 8, 8),
+      #fff,
+      40px,
+      none
+    );
+    font-size: 1em;
+    padding: 0.625em;
+    @include flex(center, center, row);
+    .heIcon {
+      margin-right: 0.6666em;
+      font-size: 1.5em;
+      color: #fff;
+    }
+  }
+
+  .showCart {
+    background: #fff;
+    @include positions(
+      absolute,
+      100%,
+      none,
+      none,
+      1.25em /*20*/,
+      28.125em /*450px*/,
+      auto
+    );
+    @include shadow(rgba(0, 0, 0, 0.15) 0px 2px 8px);
+    @include pa_ma(1.25em 0, 0);
+    border-radius: 0.3125em;
+    z-index: 999;
+
+    section {
+      @include pa_ma(0.9375em 1.875em, none);
+    }
+
+    .empty {
+      @include flex(center, space-between, center);
+      @include pa_ma(0 1.25em, 0);
+      img {
+        width: 3.125em;
+        height: 3.125em; /*50*/
+      }
+    }
+  }
+  .details {
+    &_title {
+      @include flex(center, space-between, row);
+      border-bottom: 0.125em solid rgb(136, 8, 8);
+      padding-bottom: 0.4375em;
+      h3 {
+        font-size: 1em;
+        font-weight: 600;
+      }
+    }
+    &_content {
+      @include flex(center, space-between, row);
+      margin: 1.25em 0;
+      &_img {
+        img {
+          @include width(5em, 5em, red, none, 50%, none);
+          object-fit: cover;
+        }
+      }
+      p {
+        margin-bottom: 0.3125em;
+      }
+      i {
+        color: #ff5400;
+        font-size: 1.865em;
+        cursor: pointer;
+      }
+    }
+    &_total {
+      padding-top: 0.4375em;
+      h4 {
+        font-size: 1em;
+        font-weight: 600;
+      }
+    }
+  }
+  .hideCart {
+    display: none;
+  }
+
+  input,
+  button {
+    @include default;
+  }
+}
+
+header.active {
+  @include positions(sticky, 0, none, 0, none, none, 100%);
+  box-shadow: 0 0 4px 0 rgba(115, 115, 115, 0.2);
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.8);
+
+  .showCart {
+    @include positions(absolute, 100%, none, none, 1.25em, 28.125em, auto);
+  }
+}
+
+@media screen and (max-width: 711px) {
+  header {
+    @include flex(center, center, column);
+    > div {
+      margin: 0.625em;
+    }
+  }
+}
+
+@media screen and (max-width: 380px) {
+  header {
+    .header__search {
+      width: 100%;
+    }
+    .showCart {
+      font-size: 9px;
+  }
+}
+}
